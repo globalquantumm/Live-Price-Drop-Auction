@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSL Auction Showcase</title>
     
-    <!-- Google Fonts: Roboto와 MuseoModerno 로드 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts: Roboto와 MuseoModerno 로드 --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=MuseoModerno:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -73,29 +72,39 @@
             }
         }
         
-        /* 버튼/카피라이트 (애니메이션 내부) */
-        .animation-buttons, .copyright-text {
-            position: relative;
-            margin-top: 1.5rem;
+        /* [수정] .animation-buttons 위치 변경 */
+        .animation-buttons {
+            position: relative; /* MSL 로고 바로 아래에 위치 */
+            margin-top: 2rem; /* MSL 로고와 간격 벌리기 */
             width: 100%;
             text-align: center;
         }
+        
+        /* [수정] 카피라이트 텍스트 위치 변경 */
+        .copyright-text {
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem; /* 더 작게 */
+            color: rgba(255, 255, 255, 0.6); /* 더 흐리게 */
+        }
          @media (min-width: 768px) {
-            /* [수정] 데스크탑에서 카피라이트 하단 고정 + 중앙 정렬 */
+            /* 데스크탑에서 카피라이트 하단 고정 + 중앙 정렬 */
              .copyright-text {
                 position: absolute;
-                bottom: 1rem; /* 1.5rem -> 1rem */
+                bottom: 1rem; 
                 margin-top: 0;
                 width: 100%;
                 text-align: center;
              }
+             /* [수정] 데스크탑에서 .animation-buttons 도 MSL 로고 아래 중앙에 위치 */
              .animation-buttons {
-                 /* [수정] 데스크탑 버튼 상단 고정 */
-                 position: absolute;
-                 top: 1.5rem;
-                 right: 1.5rem;
-                 width: auto; /* 꽉 참 해제 */
-                 margin-top: 0;
+                 position: relative; /* absolute 해제 */
+                 top: auto;
+                 right: auto;
+                 width: 100%;
+                 margin-top: 2rem;
              }
          }
 
@@ -132,20 +141,15 @@
 
 <body class="bg-black">
 
-    <!-- ======================================== -->
-    <!--          1. 애니메이션 섹션              -->
-    <!-- ======================================== -->
-    <div class="aspect-16-9">
+    <!-- ======================================== --><!--          1. 애니메이션 섹션              --><!-- ======================================== --><div class="aspect-16-9">
         
         <div class="content-wrapper">
 
-            <!-- [수정] 헤드라인 변경 -->
-            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-4 leading-tight">
+            <!-- [수정] 헤드라인 변경 --><h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-4 leading-tight">
                 Live Price Drop Auction
             </h1>
             
-            <!-- [수정] 간격(margin) 복원 -->
-            <div class="flex flex-col sm:flex-row gap-4 md:gap-8 my-4 md:my-8 w-full sm:w-auto">
+            <!-- [수정] 간격(margin) 복원 --><div class="flex flex-col sm:flex-row gap-4 md:gap-8 my-4 md:my-8 w-full sm:w-auto">
                 
                 <div class="bg-black bg-opacity-80 p-6 rounded-2xl text-center w-full sm:min-w-[200px]">
                     <div id="start-price" class="text-4xl md:text-5xl font-bold text-white mb-2">
@@ -175,8 +179,7 @@
                 </div>
             </div>
 
-            <!-- [수정] 간격(margin) 복원 -->
-            <p class="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
+            <!-- [수정] 간격(margin) 복원 --><p class="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
                 LIVE PRICE DROP AUCTION
             </p>
             <p class="text-sm sm:text-base md:text-lg text-gray-200 mb-8 text-center max-w-2xl">
@@ -186,36 +189,27 @@
                 MSL
             </div>
 
-            <!-- 애니메이션 버튼들 -->
-            <div class="animation-buttons">
-                <!-- [수정] 'Play Again' 버튼 (초기 숨김) - 클래스 복원 -->
-                <button id="playButton" class="hidden bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none transition-all disabled:opacity-50">
-                    Play Again
-                </button>
-                <!-- [수정] 'Start' 버튼 (초기 보임) - 클래스 복원 -->
-                <button id="playButtonStart" class="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none transition-all">
+            <!-- 애니메이션 버튼들 --><div class="animation-buttons">
+                <!-- [수정] 'Start' 버튼 (초기 보임) --><button id="playButtonStart" class="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none transition-all">
                     Start 5s Animation
+                </button>
+                <!-- [수정] 'Play Again' 버튼 (초기 숨김, MSL 로고 아래 중앙에 위치) --><button id="playButton" class="hidden bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none transition-all disabled:opacity-50">
+                    Play Again
                 </button>
             </div>
             
-            <!-- [수정] 애니메이션 카피라이트 (중앙 정렬됨) -->
-            <p class="copyright-text text-xs text-gray-400">
+            <!-- [수정] 애니메이션 카피라이트 (중앙 정렬됨) --><p class="copyright-text">
                 Confidential & Proprietary. Copyright © 2024 KIM TAEIL. All Rights Reserved.
             </p>
         </div>
     </div>
 
-    <!-- ======================================== -->
-    <!--          2. 이미지 갤러리 섹션           -->
-    <!-- ======================================== -->
-    <!-- [수정] 다크 모드 적용 -->
-    <div class="image-gallery-wrapper">
+    <!-- ======================================== --><!--          2. 이미지 갤러리 섹션           --><!-- ======================================== --><!-- [수정] 다크 모드 적용 --><div class="image-gallery-wrapper">
         <h2 class="text-4xl md:text-6xl font-bold text-center mb-12 text-gray-100">
             Auction application Showcase
         </h2>
 
-        <!-- [신규] 페이드인 효과를 위해 fade-in-element 클래스 추가 -->
-        <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/1.png" alt="UI Showcase 1" class="fade-in-element">
+        <!-- [신규] 페이드인 효과를 위해 fade-in-element 클래스 추가 --><img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/1.png" alt="UI Showcase 1" class="fade-in-element">
         <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/2.png" alt="UI Showcase 2" class="fade-in-element">
         <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/3.png" alt="UI Showcase 3" class="fade-in-element">
         <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/4.png" alt="UI Showcase 4" class="fade-in-element">
@@ -226,10 +220,7 @@
         <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/9.png" alt="UI Showcase 9" class="fade-in-element">
         <img src="https://raw.githubusercontent.com/globalquantumm/MSL-Showcase/main/10.png" alt="UI Showcase 10" class="fade-in-element">
 
-        <!-- ======================================== -->
-        <!--          3. 추천 버튼 섹션             -->
-        <!-- ======================================== -->
-        <div class="text-center mt-16">
+        <!-- ======================================== --><!--          3. 추천 버튼 섹션             --><!-- ======================================== --><div class="text-center mt-16">
             <h3 class="text-3xl font-bold mb-4">Interested?</h3>
             <p class="text-lg text-gray-400 mb-6">
                 If you like this Auction application, please leave a recommendation!
@@ -244,16 +235,12 @@
             </button>
         </div>
         
-        <!-- [신규] 갤러리 하단 카피라이트 -->
-        <p class="text-center text-gray-500 text-xs mt-16">
+        <!-- [신규] 갤러리 하단 카피라이트 --><p class="text-center text-gray-500 text-xs mt-16">
             Confidential & Proprietary. Copyright © 2024 KIM TAEIL. All Rights Reserved.
         </p>
     </div>
 
-    <!-- ======================================== -->
-    <!--          4. 스크립트 섹션                -->
-    <!-- ======================================== -->
-    <script>
+    <!-- ======================================== --><!--          4. 스크립트 섹션                --><!-- ======================================== --><script>
         // --- 1. 애니메이션 스크립트 ---
         const playButtonStart = document.getElementById('playButtonStart'); // 'Start' 버튼
         const playButton = document.getElementById('playButton'); // 'Play Again' 버튼
